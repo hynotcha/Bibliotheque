@@ -20,7 +20,7 @@
 
 <h1>Ajouter un livre <small>via ce formulaire </small></h1>
 
-<form action="Ajouterlivre" method="post" >
+<form action="AjoutDuLivre" method="post"  enctype="multipart/form-data">
 
 <%-- -----------------Tiitre Du livre--------------------------------------------------------------------------------------------------------- --%>
 
