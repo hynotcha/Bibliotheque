@@ -75,15 +75,17 @@ public class DAOFactory {
              * BoneCPConfig et les différents setters associés.
              */
             BoneCPConfig config = new BoneCPConfig();
-            /* Mise en place de l'URL, du nom et du mot de passe */
+            
             config.setJdbcUrl( url );
             config.setUsername( nomUtilisateur );
             config.setPassword( motDePasse );
-            /* Paramétrage de la taille du pool */
+            
+           
             config.setMinConnectionsPerPartition( 5 );
             config.setMaxConnectionsPerPartition( 10 );
             config.setPartitionCount( 2 );
-            /* Création du pool à partir de la configuration, via l'objet BoneCP */
+            
+            //
             connectionPool = new BoneCP( config );
         } catch ( SQLException e ) {
             e.printStackTrace();

@@ -23,8 +23,8 @@ public class TraitementForms {
 	public Date dateformulaire(HttpServletRequest request, String champ) {
 		Date date=null;
 		try {
-			
-			 date=new SimpleDateFormat("dd/mm/yy").parse(champ);
+			System.out.println("---"+champ);
+			 date=new SimpleDateFormat("dd/mm/yy").parse(Champformulaire(request,champ));
 			System.out.println(date+"   hiihihi      "+date+"------");
 		    }
 		catch (ParseException e) {
