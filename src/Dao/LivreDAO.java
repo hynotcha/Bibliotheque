@@ -7,7 +7,7 @@ import Beans.Livre;
 public interface LivreDAO {
 
 	
-	void Ajouterlivre( Livre livre ) throws DAOException;
+	void Ajouterlivre( Livre livre ) throws DAOException, Exception;
 
     Livre trouver( Long id ) throws DAOException;
     
@@ -17,5 +17,5 @@ public interface LivreDAO {
     
     void modifier () throws DAOException;
     
-    List<Livre> Chercher () throws DAOException;
+    List<Livre> Chercher ( Object...objets) throws DAOException;
 }

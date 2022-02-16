@@ -1,7 +1,10 @@
 package Beans;
 
 import java.io.File;
-import java.util.Date;
+import java.sql.Blob;
+import java.sql.Date;
+
+
 
 
 
@@ -15,8 +18,8 @@ public class Livre {
 	private  String type;
 	private  String edition;
 	private String  consult;
-	private File couverture ;
-	private File pdf ;
+	private byte[] couverture ;
+	private byte[] pdf ;
 	public Long getId() {
 		return id;
 	}
@@ -71,17 +74,23 @@ public class Livre {
 	public void setConsult(String consult) {
 		this.consult = consult;
 	}
-	public File getCouverture() {
+	public byte[] getCouverture() {
 		return couverture;
 	}
-	public void setCouverture(File couverture) {
+	public void setCouverture(byte[] couverture) {
 		this.couverture = couverture;
 	}
-	public File getPdf() {
+	public byte[] getPdf() {
 		return pdf;
 	}
-	public void setPdf(File pdf) {
+	public void setPdf(byte[] pdf) {
 		this.pdf = pdf;
+	}
+	@Override
+	public String toString() {
+		return "Livre [id=" + id + ", titre=" + titre + ", auteur=" + auteur + ", date=" + date + ", nbpage=" + nbpage
+				+ ", prix=" + prix + ", type=" + type + ", edition=" + edition + ", consult=" + consult
+				+ ", couverture=" + couverture + ", pdf=" + pdf + "]";
 	}
 
 	
