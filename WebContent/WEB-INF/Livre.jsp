@@ -69,19 +69,19 @@
 <label>Type</label>
 
 <div class="custom-control custom-checkbox ">
-    <input type="checkbox" class="custom-control-input" id="action" name="action">
+    <input type="checkbox" class="custom-control-input" id="action" name="type" value="action">
     <label class="custom-control-label" for="action"> Action</label>
     
   </div>
 
 <div class="custom-control custom-checkbox ">
-    <input type="checkbox" class="custom-control-input" id="documentaire" name="documentaire">
+    <input type="checkbox" class="custom-control-input" id="documentaire" name="documentaire" value="documentaire">
     <label class="custom-control-label" for="documentaire"> Documentaire</label>
     
   </div>
   
  <div class="custom-control custom-checkbox ">
-    <input type="checkbox" class="custom-control-input" id="dictionnaire" name="dictionnaire">
+    <input type="checkbox" class="custom-control-input" id="dictionnaire" name="dictionnaire" >
     <label class="custom-control-label" for="dictionnaire"> Dictionnaire</label>  
   </div> 
   
@@ -97,12 +97,12 @@
   </div> 
   
   <div class="custom-control custom-checkbox ">
-    <input type="checkbox" class="custom-control-input" id="fiction" name="fiction">
+    <input type="checkbox" class="custom-control-input" id="fiction" name="type" value="fiction">
     <label class="custom-control-label" for="fiction"> Fiction</label>  
   </div>
   
   <div class="custom-control custom-checkbox ">
-    <input type="checkbox" class="custom-control-input" id="policier" name="policier">
+    <input type="checkbox" class="custom-control-input" id="policier" name="type" value="policier">
     <label class="custom-control-label" for="policier"> Policier</label>
     
   </div>
