@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -36,7 +37,20 @@ public class AjoutDuLivre extends HttpServlet {
 		
 		
 		TraiterFormLivre traitement=new TraiterFormLivre(livreDao);
-		Livre livre=traitement.ajouterlivre(request);
+		Livre livre = null;
+		try {
+			livre = traitement.ajouterlivre(request);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		request.setAttribute("livre", livre);
 		
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/wassiimkhra.jsp" ).forward( request, response );

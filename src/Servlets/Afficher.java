@@ -1,6 +1,8 @@
 package Servlets;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +28,15 @@ private LivreDAO livreDao;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		Livre li=
-		livreDao.trouver( (long) 1);
-		System.out.println("________");
+		List<Livre> li= livreDao.Afficher();
+		System.out.println();
+		request.setAttribute("livre", li);
+		OutputStream outs = response.getOutputStream();
+		outs.write(li.get(8).getPdf());
+		System.out.println(outs.toString()+"   ");
+		//ByteArrayDataSource bt =new ByteArrayDataSource(li.get(8).getPdf(), "application/pdf");
+		
+		System.out.println("________"+li.get(8).getPdf());
 		
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/wassiimkhra.jsp" ).forward( request, response );
 	} 

@@ -58,8 +58,14 @@ public final class DAOUtils {
 	   
 	    public static PreparedStatement initialisationRequetePreparee( Connection connexion, String sql, boolean returnGeneratedKeys, Object... objets ) throws SQLException {
 	        PreparedStatement preparedStatement = connexion.prepareStatement( sql, returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS );
+	        
 	        for ( int i = 0; i < objets.length; i++ ) {
+	        	System.out.println(" l'objet i  "+objets[i]);
+	        	System.out.println(i);
+	        	
 	            preparedStatement.setObject( i + 1, objets[i] );
+	          
+	            System.out.println("ki ydiir Set");
 	        }
 	        return preparedStatement;
 	    }

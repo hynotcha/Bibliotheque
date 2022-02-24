@@ -10,10 +10,15 @@
 <body>
 akhtiiiiniiiii
 
+<c:forEach items="${livre}" var="li">
 
-<c:out value="${livre.id}"/>
+<c:out value="${li.id }"></c:out>
+<c:out value="${li.auteur}"></c:out>
+<c:out value="${li.pdf }"></c:out>
+</c:forEach>
+<c:out value=""/>
 
 
-<c:out value ="${livre.titre }"/>
+<c:out value =""/>
 </body>
 </html>
