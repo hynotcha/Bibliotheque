@@ -15,7 +15,8 @@ public class LivreDAOImpl implements LivreDAO {
 	private static final String SQL_INSERT        = "INSERT INTO bibliotheque.Livre (titre, auteur, type, edition, consult, nbpage, prix, date, pdf) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
 	private static final String SQL_DELETE_PAR_ID = "DELETE FROM Livre WHERE id = ?";
 	private static final String SQL_SELECT_koulach="SELECT *FROM Livre";
-	private static final String SQL_SELECT_PAR_haja="SELECT *FROM Livre WHERE ? = ?";
+	private static final String SQL_SELECT_PAR_date="SELECT *FROM Livre ORDER BY date desc";
+	//private static final String SQL_Modif="UPDATE LIVRE SET description = ?, author = ? WHERE id = ? AND seq_num = ?\";
 	private DAOFactory daofactory;
 	
 	LivreDAOImpl(DAOFactory daofact){
@@ -100,12 +101,12 @@ public class LivreDAOImpl implements LivreDAO {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Livre> livres= new ArrayList<Livre>();
-        Livre livre = null;
         
+        //hadii makanCh
         
         try {
         	connexion = daofactory.getConnection();
-        	preparedStatement= initialisationRequetePreparee(connexion, SQL_SELECT_PAR_haja, false, objets);
+        	preparedStatement= initialisationRequetePreparee(connexion, SQL_SELECT_PAR_date, false);
         	resultSet=preparedStatement.executeQuery();
         	while(resultSet.next()) {
         		System.out.println(resultSet.getMetaData().getColumnName(2));
@@ -118,22 +119,57 @@ public class LivreDAOImpl implements LivreDAO {
         	System.out.println(e);
         	throw new DAOException (e);
         } 
-        finally {}
+        finally { fermeturesSilencieuses( resultSet, preparedStatement, connexion );}
         
         
 		return livres;
 	}
 	
 	@Override
-	public void modifier() throws DAOException {
-		
-		
+	public void modifier(String champ,String valeur, Long id) throws DAOException {
+		Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String SQL_Modif="UPDATE Livre SET "+ champ+" = ? WHERE id = ?";
+        
+        try {
+        	connexion = daofactory.getConnection();
+        	preparedStatement= initialisationRequetePreparee(connexion, SQL_Modif, false, valeur,id);
+        	preparedStatement.executeUpdate();
+        	connexion.commit();
+        	}
+        
+        catch(SQLException e) {
+        	System.out.println(e);
+        	throw new DAOException (e);
+        } 
+        finally { fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+        }
+        
+        
 	}
 	
 	
 	@Override
-	public void supprimer() throws DAOException {
+	public void supprimer(Long id) throws DAOException {
+		Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+       
 		
+        try {
+        	connexion =daofactory.getConnection();
+        	preparedStatement=initialisationRequetePreparee(connexion, SQL_DELETE_PAR_ID, true, id);
+        	int status= preparedStatement.executeUpdate();
+        	connexion.commit();
+        	if(status==0) { throw new DAOException ("echec de la suppression");}
+        }
+        
+        
+       catch(Exception e) {
+    	   e.printStackTrace();
+    	   throw new DAOException(e);
+       }
+        finally { fermeturesSilencieuses(  preparedStatement, connexion );}
 		
 	}
 	
@@ -146,13 +182,10 @@ public class LivreDAOImpl implements LivreDAO {
         Livre livre = null;
 
         try {
-            /* Récupération d'une connexion depuis la Factory */
+           
             connexion = daofactory.getConnection();
             System.out.println("recupira dao");
-            /*
-             * Préparation de la requête avec les objets passés en arguments
-             * (ici, uniquement un id) et exécution.
-             */
+           
             preparedStatement = initialisationRequetePreparee( connexion, sql, false, objets );
             resultSet = preparedStatement.executeQuery();
            // connexion.commit();
@@ -160,7 +193,7 @@ public class LivreDAOImpl implements LivreDAO {
             System.out.println(resultSet.isFirst()+"  ya333 "+ resultSet.isWrapperFor(LivreDAO.class));
             System.out.println(" while");
           //  System.out.println(resultSet.getBoolean(1)+"   "+resultSet.getFetchSize() + resultSet.getString(2));
-            /* Parcours de la ligne de données retournée dans le ResultSet */
+           
             while ( resultSet.next() ) {
             	System.out.println("");
                 livre = resultat( resultSet );

@@ -36,6 +36,11 @@ public class TraiterFormLivre {
     }
     
     
+    public void modif (HttpServletRequest request) {
+    	
+    	modif(request);
+    	
+    }
     
     public Livre ajouterlivre(HttpServletRequest request) throws IOException, ServletException, SQLException {
 		

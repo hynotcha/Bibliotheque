@@ -13,9 +13,10 @@ public interface LivreDAO {
     
     List<Livre> Afficher() throws DAOException;
     
-    void supprimer () throws DAOException;
+    void supprimer (Long id) throws DAOException;
     
-    void modifier () throws DAOException;
     
     List<Livre> Chercher ( Object...objets) throws DAOException;
+
+	void modifier(String champ,String valeur, Long id) throws DAOException;
 }
