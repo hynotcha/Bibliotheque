@@ -3,7 +3,6 @@ package Servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +22,7 @@ public class AjoutDuLivre extends HttpServlet {
     private LivreDAO livreDao;
     
     public void init() throws ServletException{
+   
     	this.livreDao= ((DAOFactory)getServletContext().getAttribute("daofactory")).getLivreDao();
     }
    
@@ -56,4 +56,5 @@ public class AjoutDuLivre extends HttpServlet {
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/wassiimkhra.jsp" ).forward( request, response );
 	}
 
+	
 }

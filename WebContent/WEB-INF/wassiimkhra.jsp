@@ -46,7 +46,7 @@ akhtiiiiniiiii <br/>
  
  
  <object data="${pageContext.request.contextPath}/ss" type="application/pdf" width="500" height="300"></object>
- 
+
 <c:out value="${fi}"/>
 
 

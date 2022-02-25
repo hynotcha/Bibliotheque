@@ -1,5 +1,7 @@
 package Dao;
-import static Dao.DAOUtils.*;
+import static Dao.DAOUtils.fermeturesSilencieuses;
+import static Dao.DAOUtils.initialisationRequetePreparee;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,6 +43,9 @@ public class LivreDAOImpl implements LivreDAO {
         	
         	int status= preparedStatement.executeUpdate();
         	connexion.commit();
+
+        	System.out.println("____excute update ______"+status);
+
         	System.out.println("____excute update ______"+status );
         	if(status==0) {throw new DAOException ("echec de l'insertion");}
         	
@@ -190,10 +195,13 @@ public class LivreDAOImpl implements LivreDAO {
             resultSet = preparedStatement.executeQuery();
            // connexion.commit();
             System.out.println("excuta query");
+            System.out.println(resultSet.toString()+"  ya333 "+ resultSet.findColumn("auteur")+resultSet.next());
+            System.out.println(resultSet.getBoolean(1)+"   "+resultSet.getFetchSize() + resultSet.getString(2));
+
             System.out.println(resultSet.isFirst()+"  ya333 "+ resultSet.isWrapperFor(LivreDAO.class));
             System.out.println(" while");
           //  System.out.println(resultSet.getBoolean(1)+"   "+resultSet.getFetchSize() + resultSet.getString(2));
-           
+
             while ( resultSet.next() ) {
             	System.out.println("");
                 livre = resultat( resultSet );

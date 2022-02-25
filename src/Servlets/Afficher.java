@@ -17,18 +17,17 @@ import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.ws.util.ByteArrayDataSource;
+
 
 import Beans.Livre;
 import Dao.DAOFactory;
 import Dao.LivreDAO;
-import sun.awt.image.ByteArrayImageSource;
+
 
 /**
  * Servlet implementation class Afficher
@@ -97,7 +96,7 @@ private LivreDAO livreDao;
 			bos.write(input, 0, input.length);
 			
 		System.out.println();
-		bos.flush();
+		bos.flush();/*
 		ByteArrayDataSource bads=new ByteArrayDataSource(input, "application/pdf");
 		ByteArrayOutputStream bout=new ByteArrayOutputStream();
 		ByteArrayInputStream bin= new ByteArrayInputStream(input);
@@ -105,7 +104,7 @@ private LivreDAO livreDao;
 		InputStreamReader ir=new InputStreamReader(bads.getInputStream(),"UTF-8");
 		
 		
-		System.out.println(input+" "+bads.getContentType());
+		System.out.println(input+" "+bads.getContentType(
 		//bout.write(input);
 		System.out.println(ir.read());
 		int ligneFile = 0;
@@ -122,7 +121,7 @@ while ((laLigne = br.readLine()) != null){
         br.close();
 		String s=new String(bout.toString());
 		
-		
+	*/	
 		//OutputStream outs= new BufferedOutputStream(bads.getOutputStream());
 		
 	/*	
@@ -174,7 +173,7 @@ while ((laLigne = br.readLine()) != null){
 	List<Livre> listes=livreDao.Chercher("");
 	for (int i=0; i<listes.size();i++)
 	System.out.println(listes.get(i).getDate());*/
-		request.setAttribute("base", bads);
+		request.setAttribute("base", "");
 		request.setAttribute("fi",ss);
 		System.out.println(ss);
 		//outs.write(li.get(8).getPdf());
@@ -184,7 +183,6 @@ while ((laLigne = br.readLine()) != null){
 		//System.out.println("________"+li.get(2).getPdf());
 		
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/wassiimkhra.jsp" ).forward( request, response );
-	}
-
+	} 
 	
 }
